@@ -1,5 +1,7 @@
 # ListView
 
+列表展示, 类似于UITableView
+
 ```dart
 import 'package:flutter/material.dart';
 
@@ -150,7 +152,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       scrollDirection: Axis.horizontal,
-      itemExtent: 200,
+      itemExtent: 200, // 宽度
       children: <Widget>[
         Container(color: Colors.red),
         Container(color: Colors.green),
@@ -163,10 +165,10 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 
-### ListView.build提高性能 
+### ListView.builder 提高性能 
 通过构造函数中的children传入所有的子Widget有一个问题：默认会创建出所有的子Widget。
 但是对于用户来说，一次性构建出所有的Widget并不会有什么差异，但是对于我们的程序来说会产生性能问题，而且会增加首屏的渲染时间。
-我们可以ListView.build来构建子Widget，提高性能   
+我们可以使用ListView.build来构建子Widget，提高性能   
 
 重要参数:  
 
@@ -217,7 +219,7 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 
-### ListView.build 动态数据  
+### ListView.builder 加载动态数据  
 
 ```dart
 import 'dart:convert';
@@ -254,7 +256,6 @@ class MyHomePage extends StatefulWidget {
 
 class MyHomePageState extends State<MyHomePage> {
   List<Anchor> anchors = [];
-  int memoryPosition;
 
   // 在初始化状态的方法中加载数据
   @override
@@ -277,7 +278,7 @@ class MyHomePageState extends State<MyHomePage> {
         return Padding(
           padding: EdgeInsets.all(8),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start, // 左对齐
             children: <Widget>[
               Image.network(
                 anchors[index].imageUrl,
@@ -345,9 +346,6 @@ class MyHomePage extends StatefulWidget {
 
 class MyHomePageState extends State<MyHomePage> {
   List<Anchor> anchors = [];
-  int memoryPosition;
-  var redColor = Colors.red;
-  var greenColor = Colors.green;
 
   // 在初始化状态的方法中加载数据
   @override
@@ -404,3 +402,4 @@ class MyHomePageState extends State<MyHomePage> {
   }
 }
 ```
+

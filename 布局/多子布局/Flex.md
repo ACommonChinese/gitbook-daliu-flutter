@@ -16,3 +16,4 @@ Row组件和Column组件都继承自Flex组件。
 - 对于Column来说
     - 主轴（MainAxis）即纵向Y轴
     - 交叉轴（CrossAxis）即横向X轴
+
