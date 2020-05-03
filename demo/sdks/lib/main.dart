@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sdks/navigator/navigator.dart' as navigator;
+import 'package:sdks/simple_widgets/simple_widgets.dart' as simple_widgets;
 
 void main() => runApp(MyApp());
 
@@ -38,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: getListView(),
+      body: getListView(context),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
@@ -47,37 +49,49 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget getListView() {
+  Widget getListView(BuildContext context) {
     return ListView.builder(
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) {
-        return getItem(items[index]);
+        return getItem(title: items[index], context: context);
       },
     );
   }
 
-  Widget getItem(String title) {
+  Widget getItem({String title, BuildContext context}) {
     return GestureDetector(
       child: ListTile(title: Text(title),),
       onTap: () {
         print(items.length);
-        if (title.compareTo(Items.listView) == 0) {
+        if (title.compareTo(Items.simpleWidgets) == 0) {
+          pushToWidget(simple_widgets.HomePage());
+        } else if (title.compareTo(Items.listView) == 0) {
           print("TODO: $title");
         } else if (title.compareTo(Items.gridView) == 0) {
           print("TODO: $title");
         } else if (title.compareTo(Items.gridView) == 0) {
           print("TODO: $title");
         } else if (title.compareTo(Items.navigator) == 0) {
-          print("TODO: $title");
+          pushToWidget(navigator.HomePage());
         } else if (title.compareTo(Items.network) == 0) {
           print("TODO: $title");
         }
       },
     );
   }
+
+  void pushToWidget(Widget widget) {
+    // typedef WidgetBuilder = Widget Function(BuildContext context);
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) {
+        return widget;
+      },
+    ));
+  }
 }
 
 class Items {
+  static String simpleWidgets = "SimpleWidgets";
   static String row = "Row";
   static String column = "Column";
   static String stack = "Stack";
@@ -89,6 +103,7 @@ class Items {
 
   static List<String> all() {
     return [
+      simpleWidgets,
       row,
       column,
       stack,
