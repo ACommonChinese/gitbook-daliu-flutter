@@ -1,0 +1,965 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>微任务队列 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="多核CPU利用.html" />
+    
+    
+    <link rel="prev" href="await和async.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../../环境配置.html">
+            
+                <a href="../../环境配置.html">
+            
+                    
+                    环境配置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../../创建应用.html">
+            
+                <a href="../../创建应用.html">
+            
+                    
+                    创建应用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Dart
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../基本.html">
+            
+                <a href="../基本.html">
+            
+                    
+                    基本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../集合.html">
+            
+                <a href="../集合.html">
+            
+                    
+                    集合
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../函数.html">
+            
+                <a href="../函数.html">
+            
+                    
+                    函数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="../运算符.html">
+            
+                <a href="../运算符.html">
+            
+                    
+                    运算符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="../类和对象.html">
+            
+                <a href="../类和对象.html">
+            
+                    
+                    类和对象
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="../枚举.html">
+            
+                <a href="../枚举.html">
+            
+                    
+                    枚举
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="../泛型.html">
+            
+                <a href="../泛型.html">
+            
+                    
+                    泛型
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="../库的使用.html">
+            
+                <a href="../库的使用.html">
+            
+                    
+                    库的使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="../库的定义.html">
+            
+                <a href="../库的定义.html">
+            
+                    
+                    库的定义
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="线程.html">
+            
+                <a href="线程.html">
+            
+                    
+                    线程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.10.1" data-path="事件循环.html">
+            
+                <a href="事件循环.html">
+            
+                    
+                    Dart事件循环
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10.2" data-path="阻塞问题.html">
+            
+                <a href="阻塞问题.html">
+            
+                    
+                    阻塞问题
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10.3" data-path="Future.html">
+            
+                <a href="Future.html">
+            
+                    
+                    Future
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10.4" data-path="await和async.html">
+            
+                <a href="await和async.html">
+            
+                    
+                    await和async
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.10.5" data-path="微任务队列.html">
+            
+                <a href="微任务队列.html">
+            
+                    
+                    微任务队列
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10.6" data-path="多核CPU利用.html">
+            
+                <a href="多核CPU利用.html">
+            
+                    
+                    多核CPU利用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../../入门Flutter.html">
+            
+                <a href="../../入门Flutter.html">
+            
+                    
+                    入门Flutter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../../Run Mode.html">
+            
+                <a href="../../Run Mode.html">
+            
+                    
+                    Run Mode
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../../StatefulWidget生命周期.html">
+            
+                <a href="../../StatefulWidget生命周期.html">
+            
+                    
+                    StatefulWidget生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../../文本.html">
+            
+                <a href="../../文本.html">
+            
+                    
+                    文本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../../按钮.html">
+            
+                <a href="../../按钮.html">
+            
+                    
+                    按钮
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../../图片.html">
+            
+                <a href="../../图片.html">
+            
+                    
+                    图片
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../../TextField.html">
+            
+                <a href="../../TextField.html">
+            
+                    
+                    TextField
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../../表单.html">
+            
+                <a href="../../表单.html">
+            
+                    
+                    表单
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../../本地资源/">
+            
+                <a href="../../本地资源/">
+            
+                    
+                    本地资源
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../../本地资源/JSON.html">
+            
+                <a href="../../本地资源/JSON.html">
+            
+                    
+                    JSON
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../../滚动Widget/">
+            
+                <a href="../../滚动Widget/">
+            
+                    
+                    滚动Widget
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1" data-path="../../滚动Widget/ListView.html">
+            
+                <a href="../../滚动Widget/ListView.html">
+            
+                    
+                    ListView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.2" data-path="../../滚动Widget/GridView.html">
+            
+                <a href="../../滚动Widget/GridView.html">
+            
+                    
+                    GridView
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.3" data-path="../../滚动Widget/Slivers.html">
+            
+                <a href="../../滚动Widget/Slivers.html">
+            
+                    
+                    Slivers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.4" data-path="../../滚动Widget/监听滚动事件.html">
+            
+                <a href="../../滚动Widget/监听滚动事件.html">
+            
+                    
+                    监听滚动事件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="../../布局/">
+            
+                <a href="../../布局/">
+            
+                    
+                    布局
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="../../布局/单子布局/">
+            
+                <a href="../../布局/单子布局/">
+            
+                    
+                    单子布局
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1.1" data-path="../../布局/单子布局/Align.html">
+            
+                <a href="../../布局/单子布局/Align.html">
+            
+                    
+                    Align
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.1.2" data-path="../../布局/单子布局/Center.html">
+            
+                <a href="../../布局/单子布局/Center.html">
+            
+                    
+                    Center
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.1.3" data-path="../../布局/单子布局/Padding.html">
+            
+                <a href="../../布局/单子布局/Padding.html">
+            
+                    
+                    Padding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.1.4" data-path="../../布局/单子布局/Container.html">
+            
+                <a href="../../布局/单子布局/Container.html">
+            
+                    
+                    Container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.1.5" data-path="../../布局/单子布局/BoxDecoration.html">
+            
+                <a href="../../布局/单子布局/BoxDecoration.html">
+            
+                    
+                    BoxDecoration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="../../布局/多子布局/">
+            
+                <a href="../../布局/多子布局/">
+            
+                    
+                    多子布局
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.2.1" data-path="../../布局/多子布局/Flex.html">
+            
+                <a href="../../布局/多子布局/Flex.html">
+            
+                    
+                    Flex
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2.2" data-path="../../布局/多子布局/Row.html">
+            
+                <a href="../../布局/多子布局/Row.html">
+            
+                    
+                    Row
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2.3" data-path="../../布局/多子布局/Column.html">
+            
+                <a href="../../布局/多子布局/Column.html">
+            
+                    
+                    Column
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2.4" data-path="../../布局/多子布局/Stack.html">
+            
+                <a href="../../布局/多子布局/Stack.html">
+            
+                    
+                    Stack
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >微任务队列</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;">&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;</h1>
+<p>&#x5728;Dart&#x4E2D;&#x8FD8;&#x5B58;&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x961F;&#x5217;&#xFF1A;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#xFF08;Microtask Queue&#xFF09;&#x3002;</p>
+<ul>
+<li>&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x8981;&#x9AD8;&#x4E8E;&#x4E8B;&#x4EF6;&#x961F;&#x5217;&#xFF1B;</li>
+<li>&#x4E5F;&#x5C31;&#x662F;&#x8BF4;<code>&#x4E8B;&#x4EF6;&#x5FAA;&#x73AF;</code>&#x90FD;&#x662F;&#x4F18;&#x5148;&#x6267;&#x884C;<code>&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;</code>&#x4E2D;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x518D;&#x6267;&#x884C; <code>&#x4E8B;&#x4EF6;&#x961F;&#x5217;</code> &#x4E2D;&#x7684;&#x4EFB;&#x52A1;&#xFF1B;</li>
+</ul>
+<p>&#x90A3;&#x4E48;&#x5728;Flutter&#x5F00;&#x53D1;&#x4E2D;&#xFF0C;&#x54EA;&#x4E9B;&#x662F;&#x653E;&#x5728;&#x4E8B;&#x4EF6;&#x961F;&#x5217;&#xFF0C;&#x54EA;&#x4E9B;&#x662F;&#x653E;&#x5728;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x5462;&#xFF1F;</p>
+<ul>
+<li>&#x6240;&#x6709;&#x7684;&#x5916;&#x90E8;&#x4E8B;&#x4EF6;&#x4EFB;&#x52A1;&#x90FD;&#x5728;&#x4E8B;&#x4EF6;&#x961F;&#x5217;&#x4E2D;&#xFF0C;&#x5982;IO&#x3001;&#x8BA1;&#x65F6;&#x5668;&#x3001;&#x70B9;&#x51FB;&#x3001;&#x4EE5;&#x53CA;&#x7ED8;&#x5236;&#x4E8B;&#x4EF6;&#x7B49;&#xFF1B;</li>
+<li>&#x800C;&#x5FAE;&#x4EFB;&#x52A1;&#x901A;&#x5E38;&#x6765;&#x6E90;&#x4E8E;Dart&#x5185;&#x90E8;&#xFF0C;&#x5E76;&#x4E14;&#x5FAE;&#x4EFB;&#x52A1;&#x975E;&#x5E38;&#x5C11;&#x3002;&#x8FD9;&#x662F;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x5FAE;&#x4EFB;&#x52A1;&#x975E;&#x5E38;&#x591A;&#xFF0C;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x4E8B;&#x4EF6;&#x961F;&#x5217;&#x6392;&#x4E0D;&#x4E0A;&#x961F;&#xFF0C;&#x4F1A;&#x963B;&#x585E;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x7684;&#x6267;&#x884C;&#xFF08;&#x6BD4;&#x5982;&#x7528;&#x6237;&#x70B9;&#x51FB;&#x6CA1;&#x6709;&#x53CD;&#x5E94;&#x7684;&#x60C5;&#x51B5;&#xFF09;</li>
+</ul>
+<p><img src="images/1.jpg" alt=""></p>
+<h4 id="&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x5FAE;&#x4EFB;&#x52A1;">&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x5FAE;&#x4EFB;&#x52A1;</h4>
+<pre><code class="lang-dart"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;dart:async&quot;</span>;
+
+main(<span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">String</span>&gt; args) {
+  scheduleMicrotask(() {
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hello Microtask&quot;</span>);
+  });
+}
+</code></pre>
+<p><strong>Future&#x7684;&#x4EE3;&#x7801;&#x662F;&#x52A0;&#x5165;&#x5230;&#x4E8B;&#x4EF6;&#x961F;&#x5217;&#x8FD8;&#x662F;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#x5462;</strong></p>
+<p>Future&#x4E2D;&#x901A;&#x5E38;&#x6709;&#x4E24;&#x4E2A;&#x51FD;&#x6570;&#x6267;&#x884C;&#x4F53;&#xFF1A;</p>
+<ul>
+<li>Future&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F20;&#x5165;&#x7684;&#x51FD;&#x6570;&#x4F53;</li>
+<li>then&#x7684;&#x51FD;&#x6570;&#x4F53;&#xFF08;catchError&#x7B49;&#x540C;&#x770B;&#x5F85;&#xFF09;</li>
+</ul>
+<p>&#x90A3;&#x4E48;&#x5B83;&#x4EEC;&#x662F;&#x52A0;&#x5165;&#x5230;&#x4EC0;&#x4E48;&#x961F;&#x5217;&#x4E2D;&#x7684;&#x5462;&#xFF1F;</p>
+<ul>
+<li>Future&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F20;&#x5165;&#x7684;&#x51FD;&#x6570;&#x4F53;&#x653E;&#x5728;&#x4E8B;&#x4EF6;&#x961F;&#x5217;&#x4E2D;</li>
+<li>then&#x7684;&#x51FD;&#x6570;&#x4F53;&#x8981;&#x5206;&#x6210;&#x4E09;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;</li>
+<li>&#x60C5;&#x51B5;&#x4E00;&#xFF1A;Future&#x6CA1;&#x6709;&#x6267;&#x884C;&#x5B8C;&#x6210;&#xFF08;&#x6709;&#x4EFB;&#x52A1;&#x9700;&#x8981;&#x6267;&#x884C;&#xFF09;&#xFF0C;&#x90A3;&#x4E48;then&#x4F1A;&#x76F4;&#x63A5;&#x88AB;&#x6DFB;&#x52A0;&#x5230;Future&#x7684;&#x51FD;&#x6570;&#x6267;&#x884C;&#x4F53;&#x540E;&#xFF1B;</li>
+<li>&#x60C5;&#x51B5;&#x4E8C;&#xFF1A;&#x5982;&#x679C;Future&#x6267;&#x884C;&#x5B8C;&#x540E;&#x5C31;then&#xFF0C;&#x8BE5;then&#x7684;&#x51FD;&#x6570;&#x4F53;&#x88AB;&#x653E;&#x5230;&#x5982;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#xFF0C;&#x5F53;&#x524D;Future&#x6267;&#x884C;&#x5B8C;&#x540E;&#x6267;&#x884C;&#x5FAE;&#x4EFB;&#x52A1;&#x961F;&#x5217;&#xFF1B;</li>
+<li>&#x60C5;&#x51B5;&#x4E09;&#xFF1A;&#x5982;&#x679C;Future&#x4E16;&#x94FE;&#x5F0F;&#x8C03;&#x7528;&#xFF0C;&#x610F;&#x5473;&#x7740;then&#x672A;&#x6267;&#x884C;&#x5B8C;&#xFF0C;&#x4E0B;&#x4E00;&#x4E2A;then&#x4E0D;&#x4F1A;&#x6267;&#x884C;&#xFF1B;</li>
+</ul>
+<pre><code>// future_1&#x52A0;&#x5165;&#x5230;eventqueue&#x4E2D;&#xFF0C;&#x7D27;&#x968F;&#x5176;&#x540E;then_1&#x88AB;&#x52A0;&#x5165;&#x5230;eventqueue&#x4E2D;
+Future(() =&gt; print(&quot;future_1&quot;)).then((_) =&gt; print(&quot;then_1&quot;));
+
+// Future&#x6CA1;&#x6709;&#x51FD;&#x6570;&#x6267;&#x884C;&#x4F53;&#xFF0C;then_2&#x88AB;&#x52A0;&#x5165;&#x5230;microtaskqueue&#x4E2D;
+Future(() =&gt; null).then((_) =&gt; print(&quot;then_2&quot;));
+
+// future_3&#x3001;then_3_a&#x3001;then_3_b&#x4F9D;&#x6B21;&#x52A0;&#x5165;&#x5230;eventqueue&#x4E2D;
+Future(() =&gt; print(&quot;future_3&quot;)).then((_) =&gt; print(&quot;then_3_a&quot;)).then((_) =&gt; print(&quot;then_3_b&quot;));
+</code></pre><p>&#x793A;&#x4F8B;:  </p>
+<pre><code class="lang-dart"><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;dart:async&quot;</span>;
+
+main(<span class="hljs-built_in">List</span>&lt;<span class="hljs-built_in">String</span>&gt; args) {
+  <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;main start&quot;</span>);
+
+  Future(() =&gt; <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;task1&quot;</span>));
+
+  <span class="hljs-keyword">final</span> future = Future(() =&gt; <span class="hljs-keyword">null</span>);
+
+  Future(() =&gt; <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;task2&quot;</span>)).then((_) {
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;task3&quot;</span>);
+    scheduleMicrotask(() =&gt; <span class="hljs-built_in">print</span>(<span class="hljs-string">&apos;task4&apos;</span>));
+  }).then((_) =&gt; <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;task5&quot;</span>));
+
+  future.then((_) =&gt; <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;task6&quot;</span>));
+  scheduleMicrotask(() =&gt; <span class="hljs-built_in">print</span>(<span class="hljs-string">&apos;task7&apos;</span>));
+
+  Future(() =&gt; <span class="hljs-built_in">print</span>(<span class="hljs-string">&apos;task8&apos;</span>))
+    .then((_) =&gt; Future(() =&gt; <span class="hljs-built_in">print</span>(<span class="hljs-string">&apos;task9&apos;</span>)))
+    .then((_) =&gt; <span class="hljs-built_in">print</span>(<span class="hljs-string">&apos;task10&apos;</span>));
+
+  <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;main end&quot;</span>);
+}
+</code></pre>
+<p>&#x4EE3;&#x7801;&#x6267;&#x884C;&#x7684;&#x7ED3;&#x679C;&#x662F;&#xFF1A;</p>
+<pre><code>main start
+main end
+task7
+task1
+task6
+task2
+task3
+task5
+task4
+task8
+task9
+task10
+</code></pre><p>&#x4EE3;&#x7801;&#x5206;&#x6790;&#xFF1A;</p>
+<ul>
+<li>1&#x3001;main&#x51FD;&#x6570;&#x5148;&#x6267;&#x884C;&#xFF0C;&#x6240;&#x4EE5;<code>main start</code>&#x548C;<code>main end</code>&#x5148;&#x6267;&#x884C;&#xFF0C;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x95EE;&#x9898;&#xFF1B;</li>
+<li>2&#x3001;main&#x51FD;&#x6570;&#x6267;&#x884C;<code>&#x8FC7;&#x7A0B;&#x4E2D;</code>&#xFF0C;&#x4F1A;&#x5C06;&#x4E00;&#x4E9B;&#x4EFB;&#x52A1;&#x5206;&#x522B;&#x52A0;&#x5165;&#x5230;<code>EventQueue</code>&#x548C;<code>MicrotaskQueue</code>&#x4E2D;&#xFF1B;</li>
+<li>3&#x3001;task7&#x901A;&#x8FC7;<code>scheduleMicrotask</code>&#x51FD;&#x6570;&#x8C03;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x5B83;&#x88AB;&#x6700;&#x65E9;&#x52A0;&#x5165;&#x5230;<code>MicrotaskQueue</code>&#xFF0C;&#x4F1A;&#x88AB;&#x5148;&#x6267;&#x884C;&#xFF1B;</li>
+<li>4&#x3001;&#x7136;&#x540E;&#x5F00;&#x59CB;&#x6267;&#x884C;<code>EventQueue</code>&#xFF0C;task1&#x88AB;&#x6DFB;&#x52A0;&#x5230;<code>EventQueue</code>&#x4E2D;&#x88AB;&#x6267;&#x884C;&#xFF1B;</li>
+<li>5&#x3001;&#x901A;&#x8FC7;<code>final future = Future(() =&gt; null);</code>&#x521B;&#x5EFA;&#x7684;future&#x7684;then&#x88AB;&#x6DFB;&#x52A0;&#x5230;&#x5FAE;&#x4EFB;&#x52A1;&#x4E2D;&#xFF0C;&#x5FAE;&#x4EFB;&#x52A1;&#x76F4;&#x63A5;&#x88AB;&#x4F18;&#x5148;&#x6267;&#x884C;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x6267;&#x884C;task6&#xFF1B;</li>
+<li>6&#x3001;&#x4E00;&#x6B21;&#x5728;<code>EventQueue</code>&#x4E2D;&#x6DFB;&#x52A0;task2&#x3001;task3&#x3001;task5&#x88AB;&#x6267;&#x884C;&#xFF1B;</li>
+<li>7&#x3001;task3&#x7684;&#x6253;&#x5370;&#x6267;&#x884C;&#x5B8C;&#x540E;&#xFF0C;&#x8C03;&#x7528;<code>scheduleMicrotask</code>&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x6267;&#x884C;&#x5B8C;&#x8FD9;&#x6B21;&#x7684;<code>EventQueue</code>&#x540E;&#x4F1A;&#x6267;&#x884C;&#xFF0C;&#x6240;&#x4EE5;&#x5728;task5&#x540E;&#x6267;&#x884C;task4&#xFF08;&#x6CE8;&#x610F;&#xFF1A;<code>scheduleMicrotask</code>&#x7684;&#x8C03;&#x7528;&#x662F;&#x4F5C;&#x4E3A;task3&#x7684;&#x4E00;&#x90E8;&#x5206;&#x4EE3;&#x7801;&#xFF0C;&#x6240;&#x4EE5;task4&#x662F;&#x8981;&#x5728;task5&#x4E4B;&#x540E;&#x6267;&#x884C;&#x7684;&#xFF09;</li>
+<li>8&#x3001;task8&#x3001;task9&#x3001;task10&#x4E00;&#x6B21;&#x6DFB;&#x52A0;&#x5230;<code>EventQueue</code>&#x88AB;&#x6267;&#x884C;&#xFF1B;</li>
+</ul>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="await和async.html" class="navigation navigation-prev " aria-label="Previous page: await和async">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="多核CPU利用.html" class="navigation navigation-next " aria-label="Next page: 多核CPU利用">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"微任务队列","level":"1.4.10.5","depth":3,"next":{"title":"多核CPU利用","level":"1.4.10.6","depth":3,"path":"Dart/线程/多核CPU利用.md","ref":"Dart/线程/多核CPU利用.md","articles":[]},"previous":{"title":"await和async","level":"1.4.10.4","depth":3,"path":"Dart/线程/await和async.md","ref":"Dart/线程/await和async.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Dart/线程/微任务队列.md","mtime":"2020-05-09T04:36:08.652Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-09T23:04:10.303Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
